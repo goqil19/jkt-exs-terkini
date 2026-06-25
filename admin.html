@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - JKT Exs Terkini</title>
+    <meta name="robots" content="noindex, nofollow">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="admin-body">
+    <div id="loginSection" class="admin-login-container">
+        <div class="admin-login-card">
+            <h2>Login Admin</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" id="loginBtn">Login</button>
+                <div id="loginError" class="error-msg"></div>
+            </form>
+        </div>
+    </div>
+
+    <div id="adminPanel" class="admin-panel" style="display: none;">
+        <header class="admin-header">
+            <div class="container header-container">
+                <div class="logo">Admin<span>Panel</span></div>
+                <div class="admin-actions">
+                    <a href="index.html" class="btn btn-outline" target="_blank">Lihat Website</a>
+                    <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="container admin-main">
+            <div class="admin-grid">
+                <!-- Form Section -->
+                <div class="admin-form-section">
+                    <h2 id="formTitle">Tambah Berita</h2>
+                    <form id="newsForm">
+                        <input type="hidden" id="newsId">
+                        <div class="form-group">
+                            <label for="title">Judul Berita</label>
+                            <input type="text" id="title" required placeholder="Contoh: Harga Emas Naik">
+                        </div>
+                        <div class="form-group">
+                            <label for="source">Sumber</label>
+                            <input type="text" id="source" required placeholder="Contoh: Detik Finance">
+                        </div>
+                        <div class="form-group">
+                            <label for="imageUrl">URL Thumbnail</label>
+                            <input type="url" id="imageUrl" placeholder="https://example.com/image.jpg">
+                        </div>
+                        <div class="form-group">
+                            <label for="newsUrl">URL Berita Asli</label>
+                            <input type="url" id="newsUrl" required placeholder="https://news-source.com/article">
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="saveBtn">Simpan</button>
+                            <button type="button" class="btn btn-outline" id="cancelBtn" style="display: none;">Batal</button>
+                        </div>
+                        <div id="formMsg" class="form-msg"></div>
+                    </form>
+                </div>
+
+                <!-- List Section -->
+                <div class="admin-list-section">
+                    <h2>Daftar Berita</h2>
+                    <div id="adminNewsList" class="admin-news-list">
+                        <!-- Items injected here -->
+                        <div id="adminLoading">Memuat data...</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/supabase.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
